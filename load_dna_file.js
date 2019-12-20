@@ -247,13 +247,13 @@ function request_lua(markers) {
 }
 
 function postMessage() {
-	doPostMessage(diet_message);
+	sendMessageToFlutterWebView(diet_message);
 }
 
-function doPostMessage(message) {
-	console.log("Post message: " + message);
+function sendMessageToFlutterWebView(message) {
 	try {
-		Print.postMessage("Hello World being called from Javascript code" + message);
+		Flutter.postMessage(message);
+		console.log("Post message: " + message);
 	}
 	catch (error) {
 		console.log(error.name + ": " + error.message + "\nSource: " + error.stack);
@@ -261,7 +261,7 @@ function doPostMessage(message) {
 }
 
 function showSimpleModal(message){
-	doPostMessage(message)
+	sendMessageToFlutterWebView(message)
 }
 
 function clear_file_sources(source) {
