@@ -247,20 +247,24 @@ function request_lua(markers) {
 }
 
 function postMessage() {
-	console.log("Post message: " + diet_message);
-	try{
+	doPostMessage(diet_message);
+}
+
+function doPostMessage(message) {
+	console.log("Post message: " + message);
+	try {
 		if (webkit && webkit.messageHandlers && webkit.messageHandlers.callbackHandler) {
-			webkit.messageHandlers.callbackHandler.postMessage(diet_message);
+			webkit.messageHandlers.callbackHandler.postMessage(message);
 		}
-    Print.postMessage('Hello World being called from Javascript code');
-	} catch (error) {
-			console.log(error.name + ": " + error.message + "\nSource: " + error.stack);
+		Print.postMessage("Hello World being called from Javascript code" + message);
+	}
+	catch (error) {
+		console.log(error.name + ": " + error.message + "\nSource: " + error.stack);
 	}
 }
 
 function showSimpleModal(message){
-	$('#simple_modalTitle').html(message);
-	$('#simple_modal').modal('show');
+	doPostMessage(message)
 }
 
 function clear_file_sources(source) {
