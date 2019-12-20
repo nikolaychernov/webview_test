@@ -253,9 +253,6 @@ function postMessage() {
 function doPostMessage(message) {
 	console.log("Post message: " + message);
 	try {
-		if (webkit && webkit.messageHandlers && webkit.messageHandlers.callbackHandler) {
-			webkit.messageHandlers.callbackHandler.postMessage(message);
-		}
 		Print.postMessage("Hello World being called from Javascript code" + message);
 	}
 	catch (error) {
